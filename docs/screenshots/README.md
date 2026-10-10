@@ -24,12 +24,20 @@ executables, registry Run-key / Base64 writes, and suspicious processes.*
 
 ---
 
+## ATT&CK coverage — before vs after
+
+![Linux coverage](attack-coverage-linux.png)
+
+![Windows coverage](attack-coverage-windows.png)
+
+*Generated from the Navigator layers in [`../../navigator/`](../../navigator/).*
+
+---
+
 ### Still worth adding (optional)
 
 - **Linux credential-access alert** — the Sentinel / Wazuh **T1552.001
   "/etc/shadow"** alert at level 12, for the Linux side.
-- **ATT&CK coverage** — before/after comparison graphics are generated from the
-  Navigator layers in [`../../navigator/`](../../navigator/).
 
 Capture more with a region screenshot (`grim -g "$(slurp)" ~/Pictures/shot.png`),
 dragging the box **below the address bar** so no real IP is included.

@@ -28,6 +28,12 @@ rules, closed five of the eight gaps. The remaining three are explained below â€
 one of them (port scanning) is deliberately left to the network layer, where it
 belongs.
 
+### Coverage at a glance
+
+![Linux detection coverage before and after](docs/screenshots/attack-coverage-linux.png)
+
+![Windows detection coverage before and after](docs/screenshots/attack-coverage-windows.png)
+
 ```mermaid
 flowchart LR
   subgraph LAB["Lab VLAN 10.20.40.0/24 (isolated)"]
