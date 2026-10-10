@@ -1,7 +1,16 @@
 # Screenshots
 
-Drop your dashboard evidence here and reference it from the main README. Suggested
-set (all from the Wazuh/Sentinel runs):
+![Windows baseline detections](windows-baseline-detections.png)
+
+*Wazuh catching Windows techniques out of the box (rule.level ≥ 6): PowerShell
+dropping executables, registry Run-key / Base64 value writes, and Sysmon
+suspicious-process alerts — no custom rules.*
+
+---
+
+Drop more dashboard evidence here and reference it from the main README. Grab
+these as **native screenshots** (Windows `Win+Shift+S`, Linux screenshot tool) for
+a clean look, and crop/blur any URL bar showing the real manager IP:
 
 | File | What it shows |
 |---|---|
