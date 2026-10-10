@@ -1,0 +1,35 @@
+<!--
+  Purple-Team Detection Lab - Windows custom rules (v2 "after" pass)
+  Appended to /var/ossec/etc/rules/local_rules.xml on the manager.
+  Closes the two gaps the Windows baseline surfaced:
+    - discovery commands flew under the actionable threshold
+    - clearing the Security log was detected (63103) but only at level 5
+-->
+<group name="purpleteam_windows,">
+
+  <!-- T1070.001: clearing the Security log is high-confidence; raise 63103 to 12 -->
+  <rule id="100220" level="12">
+    <if_sid>63103</if_sid>
+    <description>T1070.001: Windows Security event log was cleared (elevated)</description>
+    <mitre><id>T1070.001</id></mitre>
+  </rule>
+
+  <!-- Tag each discovery binary via Sysmon process creation (originalFileName,
+       so a renamed binary is still caught) -->
+  <rule id="100221" level="3">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.originalFileName" type="pcre2">(?i)(whoami\.exe|systeminfo\.exe|tasklist\.exe|net\.exe|net1\.exe|nltest\.exe|ipconfig\.exe|arp\.exe|hostname\.exe)</field>
+    <description>Windows discovery command executed ($(win.eventdata.originalFileName))</description>
+    <mitre><id>T1057</id><id>T1082</id><id>T1033</id></mitre>
+  </rule>
+
+  <!-- Burst: 3+ discovery commands in 5 minutes. A lone whoami stays quiet.
+       NOTE: no same_source_ip - Windows eventchannel events carry no srcip,
+       so that condition silently blocks the rule (a real lab gotcha). -->
+  <rule id="100222" level="10" frequency="3" timeframe="300">
+    <if_matched_sid>100221</if_matched_sid>
+    <description>T1057/T1082/T1033: Discovery burst - multiple recon commands in a short window</description>
+    <mitre><id>T1057</id><id>T1082</id><id>T1033</id></mitre>
+  </rule>
+
+</group>

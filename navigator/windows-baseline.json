@@ -1,0 +1,31 @@
+{
+  "name": "Purple-Team Lab - Windows baseline (Sysmon + Wazuh, stock rules)",
+  "versions": { "attack": "14", "navigator": "4.9.1", "layer": "4.5" },
+  "domain": "enterprise-attack",
+  "description": "Windows baseline with Sysmon + Wazuh built-in rules. Green = detected at actionable severity, red = under threshold, grey = not executed / Defender-blocked.",
+  "sorting": 0,
+  "hideDisabled": false,
+  "techniques": [
+    { "techniqueID": "T1547.001", "score": 1, "color": "#2ecc71", "comment": "Detected - 92302 + 92041" },
+    { "techniqueID": "T1059.001", "score": 1, "color": "#2ecc71", "comment": "Detected - 92203/92205 (payload Defender-blocked)" },
+    { "techniqueID": "T1112",     "score": 1, "color": "#2ecc71", "comment": "Detected - 92041 base64 registry value" },
+    { "techniqueID": "T1053.005", "score": 1, "color": "#f1c40f", "comment": "Likely detected - confirm per-window" },
+    { "techniqueID": "T1136.001", "score": 1, "color": "#f1c40f", "comment": "Likely detected - confirm per-window" },
+    { "techniqueID": "T1003.001", "score": 0, "color": "#95a5a6", "comment": "Defender-blocked; host detection needs exclusion-window re-run" },
+    { "techniqueID": "T1082",     "score": 0, "color": "#e74c3c", "comment": "Below actionable level" },
+    { "techniqueID": "T1033",     "score": 0, "color": "#e74c3c", "comment": "Below actionable level" },
+    { "techniqueID": "T1057",     "score": 0, "color": "#e74c3c", "comment": "Below actionable level (confirmed with test 2, tasklist)" },
+    { "techniqueID": "T1070.001", "score": 1, "color": "#e67e22", "comment": "Detected but under-rated: rule 63103 'audit log cleared' at level 5 - tuning target" }
+  ],
+  "gradient": { "colors": ["#e74c3c", "#2ecc71"], "minValue": 0, "maxValue": 1 },
+  "legendItems": [
+    { "label": "Detected (actionable)", "color": "#2ecc71" },
+    { "label": "Likely - confirm", "color": "#f1c40f" },
+    { "label": "Detected but under-rated (tuning target)", "color": "#e67e22" },
+    { "label": "Under threshold", "color": "#e74c3c" },
+    { "label": "Defender-blocked", "color": "#95a5a6" }
+  ],
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#205b8f",
+  "selectTechniquesAcrossTactics": true
+}

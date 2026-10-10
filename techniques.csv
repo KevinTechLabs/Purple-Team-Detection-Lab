@@ -1,0 +1,11 @@
+technique_id,name,tactic,test_number,baseline_result,baseline_rule,after_result,after_rule,notes
+T1136.001,Create local account,Persistence,1,detected,5902,detected,5902,Built-in rule; caught in both runs
+T1053.003,Cron persistence,Persistence,1,detected,2833,detected,2833,Built-in rule; caught in both runs
+T1087.001,Enumerate local accounts,Discovery,1,missed,,detected,100202,auditd read-watch on /etc/passwd and /etc/group; noisy - see tuning.md
+T1057,Process discovery,Discovery,1,missed,,detected,100205,auditd execve watch on ps
+T1552.001,Credentials in files,Credential Access,1,missed,,detected,100203/100204,100203 = /etc/shadow read (lvl12); 100204 = find/grep search (lvl10)
+T1222.002,File permission modification,Defense Evasion,1,missed,,detected,100207,auditd chmod syscall watch; noisy - see tuning.md
+T1543.002,systemd service,Persistence,1,missed,,detected,100211,FIM realtime on /etc/systemd/system
+T1098.004,SSH authorized_keys,Persistence,1,missed,,missed,,FIM realtime on .ssh; key added+removed inside scan interval - see docs/gaps
+T1070.003,Clear bash history,Defense Evasion,1,missed,,missed,,atomic used shell builtin (no file write) - see docs/gaps
+T1046,Network service scanning,Discovery,1,missed,,missed,,atomic uses bash /dev/tcp (no execve); network-layer detection by design

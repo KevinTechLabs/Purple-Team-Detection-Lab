@@ -1,0 +1,20 @@
+<!--
+  Added to /var/ossec/etc/ossec.conf on the Kali target.
+  Wazuh merges multiple <ossec_config> blocks, so this is appended as its own
+  block rather than edited into the existing one.
+
+  - FIM (syscheck) watches the SSH-key and systemd-service paths in real time.
+  - The localfile block ingests the auditd log so the audit rules above reach
+    the manager.
+-->
+<ossec_config>
+  <syscheck>
+    <directories check_all="yes" realtime="yes">/root/.ssh</directories>
+    <directories check_all="yes" realtime="yes">/home/kevin/.ssh</directories>
+    <directories check_all="yes" realtime="yes">/etc/systemd/system</directories>
+  </syscheck>
+  <localfile>
+    <log_format>audit</log_format>
+    <location>/var/log/audit/audit.log</location>
+  </localfile>
+</ossec_config>

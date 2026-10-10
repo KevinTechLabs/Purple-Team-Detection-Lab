@@ -1,0 +1,79 @@
+<!--
+  Purple-Team Detection Lab - custom Wazuh rules
+  Appended to /var/ossec/etc/rules/local_rules.xml on the manager.
+  Rule IDs use the 100000+ local range. Each maps to a MITRE ATT&CK technique.
+
+  NOTE: these are detection-first rules. Several (100202 account-enum,
+  100207 perm-mod) are intentionally broad and are tuned down in docs/tuning.md
+  before they belong in a production ruleset.
+-->
+<group name="purpleteam,">
+
+  <!-- ===== File-based detections (FIM / syscheck) ===== -->
+
+  <rule id="100210" level="10">
+    <if_group>syscheck</if_group>
+    <field name="file">authorized_keys</field>
+    <description>T1098.004: SSH authorized_keys modified</description>
+    <mitre><id>T1098.004</id></mitre>
+  </rule>
+
+  <rule id="100211" level="10">
+    <if_group>syscheck</if_group>
+    <field name="file">/etc/systemd/system/</field>
+    <description>T1543.002: systemd service file change</description>
+    <mitre><id>T1543.002</id></mitre>
+  </rule>
+
+  <!-- ===== Command / access detections (auditd) ===== -->
+
+  <rule id="100201" level="10">
+    <if_group>audit</if_group>
+    <field name="audit.key">T1070_history</field>
+    <description>T1070.003: Bash history tampering</description>
+    <mitre><id>T1070.003</id></mitre>
+  </rule>
+
+  <rule id="100202" level="8">
+    <if_group>audit</if_group>
+    <field name="audit.key">T1087_account_enum</field>
+    <description>T1087.001: Local account enumeration</description>
+    <mitre><id>T1087.001</id></mitre>
+  </rule>
+
+  <rule id="100203" level="12">
+    <if_group>audit</if_group>
+    <field name="audit.key">T1552_cred_access</field>
+    <description>T1552.001: Access to credential file (/etc/shadow)</description>
+    <mitre><id>T1552.001</id></mitre>
+  </rule>
+
+  <rule id="100204" level="10">
+    <if_group>audit</if_group>
+    <field name="audit.key">T1552_cred_search</field>
+    <description>T1552.001: Credential searching with find/grep</description>
+    <mitre><id>T1552.001</id></mitre>
+  </rule>
+
+  <rule id="100205" level="6">
+    <if_group>audit</if_group>
+    <field name="audit.key">T1057_proc_disc</field>
+    <description>T1057: Process discovery</description>
+    <mitre><id>T1057</id></mitre>
+  </rule>
+
+  <rule id="100206" level="10">
+    <if_group>audit</if_group>
+    <field name="audit.key">T1046_portscan</field>
+    <description>T1046: Network service scanning (nmap)</description>
+    <mitre><id>T1046</id></mitre>
+  </rule>
+
+  <rule id="100207" level="7">
+    <if_group>audit</if_group>
+    <field name="audit.key">T1222_perm_mod</field>
+    <description>T1222.002: File permission modification</description>
+    <mitre><id>T1222.002</id></mitre>
+  </rule>
+
+</group>

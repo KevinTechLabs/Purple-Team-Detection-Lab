@@ -1,0 +1,29 @@
+## Purple-Team Detection Lab - auditd rules
+## Install to /etc/audit/rules.d/purpleteam.rules on the target, then:
+##   sudo augenrules --load
+## Each rule tags activity with a -k key that a Wazuh rule (rules/local_rules.xml)
+## matches on. Keys are named after the ATT&CK technique they support.
+
+## T1070.003 - bash history tampering (file writes/attr changes)
+## NOTE: does NOT catch `history -c` (shell builtin, no file write). See docs/gaps.
+-w /root/.bash_history -p wa -k T1070_history
+-w /home/kevin/.bash_history -p wa -k T1070_history
+
+## T1087.001 - local account enumeration (reads of account files)
+## Broad by design; tuned in docs/tuning.md.
+-w /etc/passwd -p r -k T1087_account_enum
+-w /etc/group  -p r -k T1087_account_enum
+
+## T1552.001 - credential access
+-w /etc/shadow -p r -k T1552_cred_access
+-a always,exit -F arch=b64 -S execve -F exe=/usr/bin/find -k T1552_cred_search
+-a always,exit -F arch=b64 -S execve -F exe=/usr/bin/grep -k T1552_cred_search
+
+## T1057 - process discovery
+-a always,exit -F arch=b64 -S execve -F exe=/usr/bin/ps -k T1057_proc_disc
+
+## T1046 - network service scanning (only fires if nmap binary is used)
+-a always,exit -F arch=b64 -S execve -F exe=/usr/bin/nmap -k T1046_portscan
+
+## T1222.002 - permission modification
+-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -k T1222_perm_mod

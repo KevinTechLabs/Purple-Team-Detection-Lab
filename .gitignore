@@ -1,0 +1,12 @@
+# Raw run output - regenerate locally, don't commit noisy CSVs
+results_*.csv
+
+# Secrets / local config
+*.env
+.env
+check_detections.local.py
+
+# OS / editor cruft
+.DS_Store
+*.swp
+__pycache__/

@@ -1,0 +1,29 @@
+{
+  "name": "Purple-Team Lab - Windows after custom rules",
+  "versions": { "attack": "14", "navigator": "4.9.1", "layer": "4.5" },
+  "domain": "enterprise-attack",
+  "description": "Windows after the two custom rules. Green = detected at actionable severity; the discovery gap and the log-clear rating gap are now closed.",
+  "sorting": 0,
+  "hideDisabled": false,
+  "techniques": [
+    { "techniqueID": "T1547.001", "score": 1, "color": "#2ecc71", "comment": "Detected - 92302 + 92041" },
+    { "techniqueID": "T1059.001", "score": 1, "color": "#2ecc71", "comment": "Detected - 92203/92205 (payload Defender-blocked)" },
+    { "techniqueID": "T1112",     "score": 1, "color": "#2ecc71", "comment": "Detected - 92041" },
+    { "techniqueID": "T1070.001", "score": 1, "color": "#2ecc71", "comment": "Elevated to level 12 via custom rule 100220" },
+    { "techniqueID": "T1082",     "score": 1, "color": "#2ecc71", "comment": "Now detected via discovery-burst rule 100222 (level 10)" },
+    { "techniqueID": "T1033",     "score": 1, "color": "#2ecc71", "comment": "Now detected via discovery-burst rule 100222 (level 10)" },
+    { "techniqueID": "T1057",     "score": 1, "color": "#2ecc71", "comment": "Now detected via discovery-burst rule 100222 (level 10)" },
+    { "techniqueID": "T1053.005", "score": 1, "color": "#f1c40f", "comment": "Likely detected - confirm per-window" },
+    { "techniqueID": "T1136.001", "score": 1, "color": "#f1c40f", "comment": "Likely detected - confirm per-window" },
+    { "techniqueID": "T1003.001", "score": 0, "color": "#95a5a6", "comment": "Defender-blocked; host detection needs exclusion-window re-run" }
+  ],
+  "gradient": { "colors": ["#e74c3c", "#2ecc71"], "minValue": 0, "maxValue": 1 },
+  "legendItems": [
+    { "label": "Detected (actionable)", "color": "#2ecc71" },
+    { "label": "Likely - confirm", "color": "#f1c40f" },
+    { "label": "Defender-blocked", "color": "#95a5a6" }
+  ],
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#205b8f",
+  "selectTechniquesAcrossTactics": true
+}

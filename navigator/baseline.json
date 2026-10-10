@@ -1,0 +1,32 @@
+{
+  "name": "Purple-Team Lab - Baseline (stock Wazuh agent)",
+  "versions": { "attack": "14", "navigator": "4.9.1", "layer": "4.5" },
+  "domain": "enterprise-attack",
+  "description": "Detection coverage before custom rules. Green = detected, red = missed. 2/10.",
+  "sorting": 0,
+  "hideDisabled": false,
+  "techniques": [
+    { "techniqueID": "T1136.001", "score": 1, "color": "#2ecc71", "comment": "Detected - rule 5902 (built-in)" },
+    { "techniqueID": "T1053.003", "score": 1, "color": "#2ecc71", "comment": "Detected - rule 2833 (built-in)" },
+    { "techniqueID": "T1087.001", "score": 0, "color": "#e74c3c", "comment": "Missed" },
+    { "techniqueID": "T1057",     "score": 0, "color": "#e74c3c", "comment": "Missed" },
+    { "techniqueID": "T1552.001", "score": 0, "color": "#e74c3c", "comment": "Missed" },
+    { "techniqueID": "T1222.002", "score": 0, "color": "#e74c3c", "comment": "Missed" },
+    { "techniqueID": "T1543.002", "score": 0, "color": "#e74c3c", "comment": "Missed" },
+    { "techniqueID": "T1098.004", "score": 0, "color": "#e74c3c", "comment": "Missed" },
+    { "techniqueID": "T1070.003", "score": 0, "color": "#e74c3c", "comment": "Missed" },
+    { "techniqueID": "T1046",     "score": 0, "color": "#e74c3c", "comment": "Missed" }
+  ],
+  "gradient": {
+    "colors": ["#e74c3c", "#2ecc71"],
+    "minValue": 0,
+    "maxValue": 1
+  },
+  "legendItems": [
+    { "label": "Detected", "color": "#2ecc71" },
+    { "label": "Missed", "color": "#e74c3c" }
+  ],
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#205b8f",
+  "selectTechniquesAcrossTactics": true
+}

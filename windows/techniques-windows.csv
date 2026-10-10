@@ -1,0 +1,11 @@
+technique_id,name,tactic,test_number,baseline_result,after_result,after_rule,notes
+T1547.001,Registry Run key,Persistence,1,detected,detected,92302/92041,"Run-key write + base64-like value, lvl 6/10 (built-in)"
+T1059.001,PowerShell (Mimikatz cradle),Execution,1,detected,detected,92203/92205,"PowerShell dropped executables (lvl 6-9); payload itself Defender-blocked"
+T1112,Modify registry,Defense Evasion,1,detected,detected,92041,"base64-like registry value, lvl 10 (built-in)"
+T1070.001,Clear Windows event logs,Defense Evasion,manual,detected-underrated,detected,100220,"Was 63103 lvl 5; custom rule 100220 raises to lvl 12. Run via wevtutil cl Security"
+T1057,Process discovery,Discovery,2,missed,detected,100222,"tasklist; now caught by discovery-burst rule at lvl 10"
+T1082,System information discovery,Discovery,1,missed,detected,100222,"systeminfo; now caught by discovery-burst rule at lvl 10"
+T1033,System owner/user discovery,Discovery,1,missed,detected,100222,"whoami; now caught by discovery-burst rule at lvl 10"
+T1053.005,Scheduled task,Persistence,1,likely,likely,,"Security 4698 / Sysmon - not confirmed per-window"
+T1136.001,Create local account,Persistence,1,likely,likely,,"Security 4720 - not confirmed per-window"
+T1003.001,LSASS memory access,Credential Access,1,defender-blocked,defender-blocked,,"Access denied by Defender; rerun in exclusion window to measure host detection"
