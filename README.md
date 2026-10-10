@@ -96,11 +96,17 @@ surfaced two weaknesses, both since closed with custom rules (verified by re-run
 | Discovery (T1082/T1033/T1057) | under threshold | detected, level 10 | 100222 |
 | Clear Security log (T1070.001) | detected but level 5 | elevated to level 12 | 100220 |
 
+![Windows custom rules firing](docs/screenshots/windows-after-detections.png)
+
+*The custom rules firing: discovery burst (100222, level 10) and the elevated
+Security-log clear (100220, level 12).*
+
 **The lesson isn't "Windows is safer." It's that detection coverage is a function
 of telemetry and tuning.** The identical SIEM saw almost nothing on a bare Linux
 host and a great deal on a Sysmon-instrumented Windows host — and even then, two
 real gaps (a *visibility* gap and a *rating* gap) needed closing. Full write-up and
-evidence: [`docs/windows-baseline.md`](docs/windows-baseline.md). Windows runner,
+evidence: [`docs/windows-baseline.md`](docs/windows-baseline.md); more screenshots
+in [`docs/screenshots/`](docs/screenshots/). Windows runner,
 rules and matrix live in [`windows/`](windows/); Navigator layers are
 [`navigator/windows-baseline.json`](navigator/windows-baseline.json) and
 [`navigator/windows-after.json`](navigator/windows-after.json).
