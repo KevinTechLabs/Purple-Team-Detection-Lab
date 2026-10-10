@@ -24,6 +24,14 @@ executables, registry Run-key / Base64 writes, and suspicious processes.*
 
 ---
 
+## Sentinel integration — alerts flow to the SOC dashboard
+
+<p align="center"><img src="sentinel-wazuh-alert.png" width="340" alt="Sentinel surfacing a Wazuh alert on mobile"></p>
+
+*A Wazuh detection (T1546.011, rule 92058, level 12 on win11-lab) surfaced in
+[Sentinel](https://github.com/KevinTechLabs/Homelab-Soc-Dashboard) with MITRE
+tactic mapping, triage actions, and an activity timeline — installable on a phone.*
+
 ## ATT&CK coverage — before vs after
 
 ![Linux coverage](attack-coverage-linux.png)

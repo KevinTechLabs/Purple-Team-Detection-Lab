@@ -13,6 +13,8 @@ SOC dashboard, **[Sentinel](https://github.com/KevinTechLabs/Homelab-Soc-Dashboa
 and extend the rule-tuning work in my
 **[Homelab SIEM & Detection Lab](https://github.com/KevinTechLabs/Homelab-SIEM-Detection-Lab)**.
 
+<p align="center"><img src="docs/screenshots/sentinel-wazuh-alert.png" width="320" alt="A detection surfaced in the Sentinel SOC dashboard"></p>
+
 ---
 
 ## Headline result
